@@ -1,5 +1,6 @@
+import React from "react";
+
 const OrderDetails = ({ orderData }) => {
-   
     const {
         name,
         form_no,
@@ -15,7 +16,7 @@ const OrderDetails = ({ orderData }) => {
         date_of_birth,
         admission_date,
         blood_group,
-        courses = []
+        course_data = {}
     } = orderData;
 
     return (
@@ -68,12 +69,12 @@ const OrderDetails = ({ orderData }) => {
                                     <p>{date_of_birth}</p>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <p>Admission Date:</p>
-                                    <p>{admission_date}</p>
+                                    <p>School/College:</p>
+                                    <p>{school_collage_name}</p>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <p>Blood Group:</p>
-                                    <p>{blood_group}</p>
+                                    <p>Present Address:</p>
+                                    <p>{present_address}</p>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <p>NID:</p>
@@ -84,41 +85,45 @@ const OrderDetails = ({ orderData }) => {
                     </div>
 
                     <div className="lg:my-8 md:my-6 my-8 px-p_4px">
-                        <p className="md:my-2 font-semibold">Courses:</p>
+                        <p className="md:my-2 font-semibold">Course Details:</p>
                         <table className="overflow-x-auto border w-full">
                             <thead className="w-full">
                                 <tr className="text-sm">
                                     <th className="lg:w-20 md:w-16 w-8 py-2 md:py-4 lg:py-6 border">Image</th>
                                     <th className="lg:w-72 md:w-64 w-40 py-2 md:py-4 lg:py-6 border">Course Name</th>
-                                    <th className="lg:w-72 md:w-64 w-40 py-2 md:py-4 lg:py-6 border">Price</th>
-                                    <th className="lg:w-20 md:w-20 w-16 py-2 md:py-4 lg:py-6 border">Quantity</th>
+                                    <th className="lg:w-72 md:w-64 w-40 py-2 md:py-4 lg:py-6 border">Student Name</th>
+                                    <th className="lg:w-20 md:w-20 w-16 py-2 md:py-4 lg:py-6 border">Price</th>
+                                    <th className="lg:w-20 md:w-20 w-16 py-2 md:py-4 lg:py-6 border">Discount</th>
                                     <th className="lg:w-20 md:w-20 w-16 py-2 md:py-4 lg:py-6 border text-center">Total</th>
                                 </tr>
                             </thead>
                             <tbody className="md:text-base text-sm font-semibold">
-                                {courses.map((course, index) => (
-                                    <tr key={index}>
+                                {course_data && (
+                                    <tr>
                                         <td className="border text-center w-10 h-12 px-2">
                                             <img
                                                 className="w-full h-full object-cover mx-auto"
-                                                src={course.photo}
-                                                alt={course.course_name}
+                                                src={course_data.photo}
+                                                alt={course_data.course_name}
                                             />
                                         </td>
                                         <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                            {course.course_name}
+                                            {course_data.course_name}
                                         </td>
                                         <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                            ৳{course.price}
+                                            {name}
                                         </td>
                                         <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                            {course.quantity}
+                                            ৳{course_data.regular_price}
                                         </td>
                                         <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                            ৳{course.price * course.quantity}
+                                            ৳{course_data.discount_price}
+                                        </td>
+                                        <td className="lg:py-6 md:py-4 py-2 text-center border">
+                                            ৳{course_data.discount_price || course_data.regular_price}
                                         </td>
                                     </tr>
-                                ))}
+                                )}
                             </tbody>
                         </table>
                     </div>
