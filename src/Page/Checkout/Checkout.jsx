@@ -1,4 +1,5 @@
 import { React, useContext,useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import CartItems from "../Cart/CartItems";
 import CartSummary2 from "../Cart/CartSummery2";
@@ -6,6 +7,7 @@ import { OrderContext } from "../../ContextAPIs/OrderProvider";
 
 const Checkout = () => {
   const { cart } = useContext(OrderContext);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     form_no: "",
@@ -101,6 +103,7 @@ const Checkout = () => {
         photo: null
       });
       toast.success(result.message);
+      navigate("/order-details", { state: result.coursePurchaseData });
       // Handle success (redirect, show message, etc.)
     } catch (error) {
         console.error("Error:", error);
