@@ -43,6 +43,7 @@ const Login = () => {
           <h1 className="text-2xl text-center pt-14 lg:pt-[70px] pb-2 rounded-t-xl bg-gray-200 text-blue-700 lg:text-3xl font-semibold">
             Welcome to <br /> Greater Chattogram Association UK
           </h1>
+          <h3 className="text-center text-red-400">You use the email:admin@gmail.com and password:123</h3>
           <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
               <label className="label">

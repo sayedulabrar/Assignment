@@ -11,13 +11,17 @@ import Cart from "../Page/Cart/Cart";
 import OrderDetails from "../Page/OrderDetails/OrderDetails";
 import Checkout from "../Page/Checkout/Checkout";
 import Search from "../Page/Search/Search";
-
+import { Navigate } from "react-router-dom";
 
 const Router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
         children: [
+            {
+                index: true, // this means path: '/'
+                element: <Navigate to="/login" replace />
+            },
             {
                 path: '/login',
                 element: <Login />
